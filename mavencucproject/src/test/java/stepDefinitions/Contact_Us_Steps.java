@@ -92,7 +92,7 @@ public class Contact_Us_Steps extends Base_PO {
 
     @And("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
-        System.out.println("scnario2stp4naya1");
+        System.out.println("scnario2stp4nayajenkinsrun6");
         contact_us_po.set_Comment(comment);
 
     }
