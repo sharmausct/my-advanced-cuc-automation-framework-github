@@ -30,6 +30,7 @@ public class DriverFactory {
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 driver=new ChromeDriver(chromeOptions);
+                System.out.println("used chrome browser");
                 break;
             }
             case ("firefox"): {
@@ -38,6 +39,7 @@ public class DriverFactory {
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 firefoxOptions.addArguments("--remote-allow-origins=*");
                 driver = new FirefoxDriver(firefoxOptions);
+                System.out.println("used firefox browser");
                 break;
             }
         }
@@ -49,12 +51,19 @@ public class DriverFactory {
     private static String getBrowserType()  {
 
         String browserType = null;
-
+        
+        String browserTypeRemoteValue = System.getProperty(browserType);
+        
         try {
-            Properties properties = new Properties();
-            FileInputStream file = new FileInputStream (System.getProperty("user.dir")+ "/src/main/java/properties/config.properties");
-            properties.load(file);
-            browserType = properties.getProperty("browser").toLowerCase().trim();
+        	if (browserTypeRemoteValue == null ||browserTypeRemoteValue.isEmpty()) {
+        		Properties properties = new Properties();
+        		FileInputStream file = new FileInputStream (System.getProperty("user.dir")+ "/src/main/java/properties/config.properties");
+        		properties.load(file);
+        		browserType = properties.getProperty("browser").toLowerCase().trim();
+        	} else {
+        		browserType = browserTypeRemoteValue;
+        		
+        	}
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
