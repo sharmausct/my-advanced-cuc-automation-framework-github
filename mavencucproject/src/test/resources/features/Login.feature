@@ -30,7 +30,7 @@ Feature: WebDriver University - Login Page
     Examples:
       | username  | password      | popupmessagetext     |
       | webdriver | webdriver123  | validation succeeded |
-      | webdriver | invalidpwd123 | validation failed2    |
+      | webdriver | invalidpwd123 | validation failed    |
       | invalidUN | invalidpwd123 | validation failed    |
 
 
