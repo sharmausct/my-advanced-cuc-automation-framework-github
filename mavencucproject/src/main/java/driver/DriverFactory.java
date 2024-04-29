@@ -52,7 +52,7 @@ public class DriverFactory {
 
         String browserType = null;
         
-        String browserTypeRemoteValue = System.getProperty(browserType);
+        String browserTypeRemoteValue = System.getProperty("browserType");
         
         try {
         	if (browserTypeRemoteValue == null ||browserTypeRemoteValue.isEmpty()) {
