@@ -15,7 +15,7 @@ Feature: WebDriver University - Contact Us Page
     And I click on the submit button
     Then I should be presented with a successful contact us submission message "Thank You for your Message!"
 
-  @smoke
+  
   Scenario: Validate Successful Submission - Specific Data
     When I enter a specific first name jhon
     And I enter a specific last name lstname
