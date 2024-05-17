@@ -4,6 +4,8 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import java.io.FileInputStream;
@@ -26,6 +28,8 @@ public class DriverFactory {
 
         switch (getBrowserType()) {
             case ("chrome"): {
+            	//old approach, now driver setup is not required as we have Selenium Manager in Selenium-4
+                //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/chromedriver.exe");
                 ChromeOptions chromeOptions=new ChromeOptions();
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("--remote-allow-origins=*");
@@ -34,12 +38,22 @@ public class DriverFactory {
                 break;
             }
             case ("firefox"): {
-                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
+            	//old approach, now driver setup is not required as we have Selenium Manager in Selenium-4
+                //System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setAcceptInsecureCerts(true);
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-                firefoxOptions.addArguments("--remote-allow-origins=*");
+                //firefoxOptions.addArguments("--remote-allow-origins=*");
                 driver = new FirefoxDriver(firefoxOptions);
                 System.out.println("used firefox browser");
+                break;
+            }
+            case ("edge"): {
+            	EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.setAcceptInsecureCerts(true);
+                edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                driver = new EdgeDriver(edgeOptions);
+                System.out.println("used edge browser");
                 break;
             }
         }
